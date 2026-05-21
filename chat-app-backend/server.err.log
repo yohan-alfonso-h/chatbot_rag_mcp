@@ -1,0 +1,39 @@
+Error generating response from Gemini API: ApiError: {"error":{"code":503,"message":"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.","status":"UNAVAILABLE"}}
+    at throwErrorIfNotOK (file:///E:/IA/Agentes/coursera/Agentic_ai_fundation/angular_projects/chat-app-backend/node_modules/@google/genai/dist/node/index.mjs:13508:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///E:/IA/Agentes/coursera/Agentic_ai_fundation/angular_projects/chat-app-backend/node_modules/@google/genai/dist/node/index.mjs:13208:13
+    at async Models.generateContent (file:///E:/IA/Agentes/coursera/Agentic_ai_fundation/angular_projects/chat-app-backend/node_modules/@google/genai/dist/node/index.mjs:14616:24)
+    at async geminiProvider.generateResponse (file:///E:/IA/Agentes/coursera/Agentic_ai_fundation/angular_projects/chat-app-backend/src/geminiProvider.js:20:24)
+    at async file:///E:/IA/Agentes/coursera/Agentic_ai_fundation/angular_projects/chat-app-backend/src/chatRouter.js:62:26 {
+  status: 503
+}
+Error generating response from Gemini API: Error: Failed to generate response from Gemini API
+    at geminiProvider.generateResponse (file:///E:/IA/Agentes/coursera/Agentic_ai_fundation/angular_projects/chat-app-backend/src/geminiProvider.js:27:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///E:/IA/Agentes/coursera/Agentic_ai_fundation/angular_projects/chat-app-backend/src/chatRouter.js:62:26
+Error generating response from Gemini API: ApiError: {"error":{"code":503,"message":"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.","status":"UNAVAILABLE"}}
+    at throwErrorIfNotOK (file:///E:/IA/Agentes/coursera/Agentic_ai_fundation/angular_projects/chat-app-backend/node_modules/@google/genai/dist/node/index.mjs:13508:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///E:/IA/Agentes/coursera/Agentic_ai_fundation/angular_projects/chat-app-backend/node_modules/@google/genai/dist/node/index.mjs:13208:13
+    at async Models.generateContent (file:///E:/IA/Agentes/coursera/Agentic_ai_fundation/angular_projects/chat-app-backend/node_modules/@google/genai/dist/node/index.mjs:14616:24)
+    at async geminiProvider.generateResponse (file:///E:/IA/Agentes/coursera/Agentic_ai_fundation/angular_projects/chat-app-backend/src/geminiProvider.js:20:24)
+    at async file:///E:/IA/Agentes/coursera/Agentic_ai_fundation/angular_projects/chat-app-backend/src/chatRouter.js:62:26 {
+  status: 503
+}
+Error generating response from Gemini API: Error: Failed to generate response from Gemini API
+    at geminiProvider.generateResponse (file:///E:/IA/Agentes/coursera/Agentic_ai_fundation/angular_projects/chat-app-backend/src/geminiProvider.js:27:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///E:/IA/Agentes/coursera/Agentic_ai_fundation/angular_projects/chat-app-backend/src/chatRouter.js:62:26
+Error generating response from Gemini API: ApiError: {"error":{"code":503,"message":"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.","status":"UNAVAILABLE"}}
+    at throwErrorIfNotOK (file:///E:/IA/Agentes/coursera/Agentic_ai_fundation/angular_projects/chat-app-backend/node_modules/@google/genai/dist/node/index.mjs:13508:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///E:/IA/Agentes/coursera/Agentic_ai_fundation/angular_projects/chat-app-backend/node_modules/@google/genai/dist/node/index.mjs:13208:13
+    at async Models.generateContent (file:///E:/IA/Agentes/coursera/Agentic_ai_fundation/angular_projects/chat-app-backend/node_modules/@google/genai/dist/node/index.mjs:14616:24)
+    at async geminiProvider.generateResponse (file:///E:/IA/Agentes/coursera/Agentic_ai_fundation/angular_projects/chat-app-backend/src/geminiProvider.js:20:24)
+    at async file:///E:/IA/Agentes/coursera/Agentic_ai_fundation/angular_projects/chat-app-backend/src/chatRouter.js:62:26 {
+  status: 503
+}
+Error generating response from Gemini API: Error: Failed to generate response from Gemini API
+    at geminiProvider.generateResponse (file:///E:/IA/Agentes/coursera/Agentic_ai_fundation/angular_projects/chat-app-backend/src/geminiProvider.js:27:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///E:/IA/Agentes/coursera/Agentic_ai_fundation/angular_projects/chat-app-backend/src/chatRouter.js:62:26

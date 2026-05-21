@@ -1,0 +1,197 @@
+Server is running on port 3000
+Received message: Where can I track my order?
+Received message: How can I update my email address?
+Prepared prompt: You are an AI assistant. You will be given a set of context information and a question. If the answer is not found in the context, say "I don't know".
+        context:
+        FAQ 1:
+Question: How can I update my email address?
+Answer: You can update your email from your Profile Settings page under Email Preferences.
+
+FAQ 2:
+Question: How do I reset my password?
+Answer: To reset your password, go to the Account Settings page and click on 'Forgot Password'.
+
+        user: How can I update my email address?
+        Answer in one short paragraph.
+Received message: how can I change my adress
+Prepared prompt: You are an AI assistant. You will be given a set of context information and a question. If the answer is not found in the context, say "I don't know".
+        context:
+        FAQ 1:
+Question: How can I update my email address?
+Answer: You can update your email from your Profile Settings page under Email Preferences.
+
+FAQ 2:
+Question: How do I reset my password?
+Answer: To reset your password, go to the Account Settings page and click on 'Forgot Password'.
+
+        user: how can I change my adress
+        Answer in one short paragraph.
+Generated response: I don't know.
+Received message: how can I update my email address?
+Prepared prompt: You are an AI assistant. You will be given a set of context information and a question. If the answer is not found in the context, say "I don't know".
+        context:
+        FAQ 1:
+Question: How can I update my email address?
+Answer: You can update your email from your Profile Settings page under Email Preferences.
+
+FAQ 2:
+Question: How do I reset my password?
+Answer: To reset your password, go to the Account Settings page and click on 'Forgot Password'.
+
+        user: how can I update my email address?
+        Answer in one short paragraph.
+Generated response: You can update your email from your Profile Settings page under Email Preferences.
+Received message: I'm affraid of my data
+Prepared prompt: You are an AI assistant. You will be given a set of context information and a question. If the answer is not found in the context, say "I don't know".
+        context:
+        FAQ 1:
+Question: Is my data secure?
+Answer: Yes. All user data is encrypted and protected using industry best security practices.
+
+FAQ 2:
+Question: How can I update my email address?
+Answer: You can update your email from your Profile Settings page under Email Preferences.
+
+        user: I'm affraid of my data
+        Answer in one short paragraph.
+Generated response: Yes, your data is secure. All user data is encrypted and protected using industry best security practices.
+Received message: how to update my email?
+Prepared prompt: You are an AI assistant. You will be given a set of context information and a question. If the answer is not found in the context, say "I don't know".
+        context:
+        FAQ 1:
+Question: How can I update my email address?
+Answer: You can update your email from your Profile Settings page under Email Preferences.
+
+FAQ 2:
+Question: How do I reset my password?
+Answer: To reset your password, go to the Account Settings page and click on 'Forgot Password'.
+
+        user: how to update my email?
+        Answer in one short paragraph.
+Generated response: You can update your email from your Profile Settings page under Email Preferences.
+Received message: how to change mail?
+Prepared prompt: You are an AI assistant. You will be given a set of context information and a question. If the answer is not found in the context, say "I don't know".
+        context:
+        FAQ 1:
+Question: How can I update my email address?
+Answer: You can update your email from your Profile Settings page under Email Preferences.
+
+FAQ 2:
+Question: How do I reset my password?
+Answer: To reset your password, go to the Account Settings page and click on 'Forgot Password'.
+
+        user: how to change mail?
+        Answer in one short paragraph.
+Received message: how is the addres of the e comerce place for animal stuff
+Prepared prompt: You are an AI assistant. You will be given a set of context information and a question. If the answer is not found in the context, say "I don't know".
+        context:
+        FAQ 1:
+Question: How can I update my email address?
+Answer: You can update your email from your Profile Settings page under Email Preferences.
+
+FAQ 2:
+Question: What is your refund policy?
+Answer: We offer refunds within 30 days of purchase. Contact support with your order ID.
+
+        user: how is the addres of the e comerce place for animal stuff
+        Answer in one short paragraph.
+Generated response: I don't know.
+Received message: how to create a new password?}
+Prepared prompt: You are an AI assistant. You will be given a set of context information and a question. If the answer is not found in the context, say "I don't know".
+        context:
+        FAQ 1:
+Question: How do I reset my password?
+Answer: To reset your password, go to the Account Settings page and click on 'Forgot Password'.
+
+FAQ 2:
+Question: Is my data secure?
+Answer: Yes. All user data is encrypted and protected using industry best security practices.
+
+        user: how to create a new password?}
+        Answer in one short paragraph.
+Generated response: I don't know.
+Received message: how to create a new passwprd
+Prepared prompt: You are an AI assistant. You will be given a set of context information and a question. If the answer is not found in the context, say "I don't know".
+        context:
+        FAQ 1:
+Question: How do I reset my password?
+Answer: To reset your password, go to the Account Settings page and click on 'Forgot Password'.
+
+FAQ 2:
+Question: Is my data secure?
+Answer: Yes. All user data is encrypted and protected using industry best security practices.
+
+        user: how to create a new passwprd
+        Answer in one short paragraph.
+Generated response: I don't know.
+Received message: what is your refound policy?
+Received message: how can i find a place to buy animal stuff?
+Prepared prompt: You are an AI assistant. You will be given a set of context information and a question. If the answer is not found in the context, say "I don't know".
+        context:
+        FAQ 1:
+Question: What is your refund policy?
+Answer: We offer refunds within 30 days of purchase. Contact support with your order ID.
+
+FAQ 2:
+Question: Is my data secure?
+Answer: Yes. All user data is encrypted and protected using industry best security practices.
+
+        user: how can i find a place to buy animal stuff?
+        Answer in one short paragraph.
+Generated response: I don't know.
+Received message: what is the refound policy?
+Received message: what is the best time of year to by chistmas presents?
+Prepared prompt: You are an AI assistant. You will be given a set of context information and a question. If the answer is not found in the context, say "I don't know".
+        context:
+        FAQ 1:
+Question: What is your refund policy?
+Answer: We offer refunds within 30 days of purchase. Contact support with your order ID.
+
+FAQ 2:
+Question: Is my data secure?
+Answer: Yes. All user data is encrypted and protected using industry best security practices.
+
+        user: what is the best time of year to by chistmas presents?
+        Answer in one short paragraph.
+Received message: what is the best time of year to by chistmas presents?
+Prepared prompt: You are an AI assistant. You will be given a set of context information and a question. If the answer is not found in the context, say "I don't know".
+        context:
+        FAQ 1:
+Question: What is your refund policy?
+Answer: We offer refunds within 30 days of purchase. Contact support with your order ID.
+
+FAQ 2:
+Question: Is my data secure?
+Answer: Yes. All user data is encrypted and protected using industry best security practices.
+
+        user: what is the best time of year to by chistmas presents?
+        Answer in one short paragraph.
+Generated response: I don't know.
+Received message: what is the best time of year to by christmas presents?
+Prepared prompt: You are an AI assistant. You will be given a set of context information and a question. If the answer is not found in the context, say "I don't know".
+        context:
+        FAQ 1:
+Question: What is your refund policy?
+Answer: We offer refunds within 30 days of purchase. Contact support with your order ID.
+
+FAQ 2:
+Question: Is my data secure?
+Answer: Yes. All user data is encrypted and protected using industry best security practices.
+
+        user: what is the best time of year to by christmas presents?
+        Answer in one short paragraph.
+Generated response: I don't know.
+Received message: tell me the products
+Prepared prompt: You are an AI assistant. You will be given a set of context information and a question. If the answer is not found in the context, say "I don't know".
+        context:
+        FAQ 1:
+Question: What is your refund policy?
+Answer: We offer refunds within 30 days of purchase. Contact support with your order ID.
+
+FAQ 2:
+Question: Is my data secure?
+Answer: Yes. All user data is encrypted and protected using industry best security practices.
+
+        user: tell me the products
+        Answer in one short paragraph.
+Generated response: I don't know.

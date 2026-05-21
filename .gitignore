@@ -1,0 +1,10 @@
+# Environment variables and local secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies and generated output
+node_modules/
+dist/
+.angular/
+
