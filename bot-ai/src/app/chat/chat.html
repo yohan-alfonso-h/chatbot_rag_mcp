@@ -1,0 +1,127 @@
+<main class="flex min-h-screen items-center justify-center bg-[#020512] text-slate-100 sm:p-4">
+  <section class="flex h-screen w-full flex-col overflow-hidden bg-gray-800 shadow-2xl shadow-black/70 sm:h-full sm:max-h-[90vh] sm:max-w-2xl sm:rounded-3xl">
+    <header class="flex items-center gap-3 border-b border-slate-700/80 bg-gray-900 px-4 py-4 sm:px-6">
+      <div class="grid size-9 shrink-0 place-items-center rounded-full text-teal-300">
+        <i class="bi bi-chat-dots-fill text-3xl"></i>
+      </div>
+
+      <div class="min-w-0">
+        <h1 class="truncate text-lg font-bold tracking-normal text-white sm:text-xl">
+          AI Bot
+        </h1>
+        <p class="truncate text-xs font-medium text-slate-500 sm:text-sm">
+          Your AI assistant
+        </p>
+      </div>
+    </header>
+
+    <div #messagesContainer class="flex-1 overflow-y-auto bg-[#070a1a] px-3 py-4 sm:px-4 sm:py-5">
+      @if (history().length === 0) {
+        <div class="flex h-full min-h-80 items-center justify-center text-center">
+          <div class="max-w-sm px-6">
+            <div class="mx-auto mb-4 grid size-14 place-items-center rounded-2xl bg-slate-900 text-teal-300 ring-1 ring-slate-800">
+              <i class="bi bi-chat-dots-fill text-2xl"></i>
+            </div>
+            <h2 class="text-base font-semibold text-white">Start the conversation</h2>
+            <p class="mt-2 text-sm leading-6 text-slate-500">
+              Send a message and AI Bot will respond here.
+            </p>
+          </div>
+        </div>
+      } @else {
+        <div class="space-y-5">
+          @for (item of history(); track $index) {
+            <div class="flex items-end gap-2" [class.justify-end]="item.role === 'user'" [class.justify-start]="item.role === 'bot'">
+              @if (item.role === 'bot') {
+                <div class="grid size-8 shrink-0 place-items-center rounded-full bg-slate-200 text-slate-800 shadow-sm">
+                  <i class="bi bi-robot text-sm"></i>
+                </div>
+              }
+
+              <div class="flex max-w-[75%] flex-col sm:max-w-[65%]" [class.items-end]="item.role === 'user'" [class.items-start]="item.role === 'bot'">
+                <div
+                  class="rounded-2xl px-4 py-3 text-sm leading-6 shadow-md"
+                  [class.rounded-br-md]="item.role === 'user'"
+                  [class.bg-teal-600]="item.role === 'user'"
+                  [class.text-white]="item.role === 'user'"
+                  [class.shadow-teal-950/30]="item.role === 'user'"
+                  [class.rounded-bl-md]="item.role === 'bot'"
+                  [class.bg-slate-200]="item.role === 'bot'"
+                  [class.text-slate-900]="item.role === 'bot'"
+                  [class.shadow-black/15]="item.role === 'bot'"
+                >
+                  {{ item.content }}
+                </div>
+
+                @if (item.timestamp) {
+                  <time class="mt-1 px-1 text-[11px] font-medium text-slate-500">
+                    {{ item.timestamp }}
+                  </time>
+                }
+              </div>
+
+              @if (item.role === 'user') {
+                <div class="grid size-8 shrink-0 place-items-center rounded-full bg-teal-600 text-white shadow-sm">
+                  <i class="bi bi-person-fill text-sm"></i>
+                </div>
+              }
+            </div>
+          }
+
+          @if (loading() && history().at(-1)?.role === 'user') {
+            <div class="flex items-end justify-start gap-2">
+              <div class="grid size-8 shrink-0 place-items-center rounded-full bg-slate-200 text-slate-800 shadow-sm">
+                <i class="bi bi-robot text-sm"></i>
+              </div>
+
+              <article class="max-w-[75%] rounded-2xl rounded-bl-md bg-slate-200 px-4 py-3 text-sm font-medium text-slate-900 shadow-md shadow-black/15 sm:max-w-[65%]">
+                <div class="mb-2 flex items-center gap-2">
+                  <span class="relative flex size-2.5">
+                    <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-500 opacity-75"></span>
+                    <span class="relative inline-flex size-2.5 rounded-full bg-teal-600"></span>
+                  </span>
+                  <span>Bot is typing...</span>
+                </div>
+
+                <div class="space-y-2">
+                  <div class="h-2.5 w-48 animate-pulse rounded-full bg-slate-300"></div>
+                  <div class="h-2.5 w-32 animate-pulse rounded-full bg-slate-300"></div>
+                </div>
+              </article>
+            </div>
+          }
+        </div>
+      }
+    </div>
+
+    @if (error()) {
+      <div class="border-t border-red-500/20 bg-red-950/30 px-4 py-3 text-sm text-red-200 sm:px-6">
+        {{ error() }}
+      </div>
+    }
+
+    <form class="border-t border-slate-700/80 bg-gray-900 p-3 sm:p-4" (ngSubmit)="sendMessage()">
+      <div class="flex items-center gap-3 rounded-full border border-slate-800 bg-[#0b1020] px-4 py-2.5 focus-within:border-teal-400/70 focus-within:ring-2 focus-within:ring-teal-400/20">
+        <input
+          class="min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-slate-500 disabled:cursor-not-allowed disabled:opacity-60 sm:text-base"
+          name="message"
+          type="text"
+          autocomplete="off"
+          placeholder="Type your message..."
+          [disabled]="loading()"
+          [ngModel]="message()"
+          (ngModelChange)="message.set($event)"
+        />
+
+        <button
+          class="grid size-10 shrink-0 place-items-center rounded-full bg-teal-600 text-white transition hover:bg-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-300 focus:ring-offset-2 focus:ring-offset-slate-950 disabled:cursor-not-allowed disabled:bg-slate-700 disabled:text-slate-400 sm:size-11"
+          type="submit"
+          aria-label="Send message"
+          [disabled]="loading() || !message().trim()"
+        >
+          <i class="bi bi-send-fill text-lg"></i>
+        </button>
+      </div>
+    </form>
+  </section>
+</main>
