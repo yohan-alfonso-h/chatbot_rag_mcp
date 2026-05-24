@@ -13,6 +13,13 @@ class geminiProvider {
     }
 
     this.genAI = new GoogleGenAI({ apiKey: this.apiKey });
+
+    // Log the model being used for transparency
+    try {
+      console.log(`using model: ${this.moduleName} (Gemini)`);
+    } catch (e) {
+      // ignore logging errors
+    }
   }
 
   async generateResponse(prompt) {
