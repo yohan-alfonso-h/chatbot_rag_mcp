@@ -10,20 +10,33 @@ let faqVectorCache;
 async function getFaqVectors(gemini) {
     if (!faqVectorCache) {
         faqVectorCache = (async () => {
-            const faqData = ragProvider.fetchDocumentData('faqs.json');
-            const faqEmbeddings = await gemini.generateEmbeddings(
-                faqData.map((item) => ragProvider.createFaqEmbeddingText(item)),
-                "RETRIEVAL_DOCUMENT",
-            );
+            try {
+                console.log("Loading FAQ data...");
+                const faqData = ragProvider.fetchDocumentData('faqs.json');
+                console.log(`Loaded ${faqData.length} FAQs`);
+                
+                console.log("Generating embeddings for FAQs...");
+                const faqTexts = faqData.map((item) => ragProvider.createFaqEmbeddingText(item));
+                console.log(`Generating embeddings for ${faqTexts.length} FAQ texts`);
+                
+                const faqEmbeddings = await gemini.generateEmbeddings(
+                    faqTexts,
+                    "RETRIEVAL_DOCUMENT",
+                );
+                console.log(`Generated ${faqEmbeddings.length} embeddings`);
 
-            return faqData.map((faq, index) => ({
-                ...faq,
-                vector: faqEmbeddings[index],
-            }));
-        })().catch((error) => {
-            faqVectorCache = null;
-            throw error;
-        });
+                const result = faqData.map((faq, index) => ({
+                    ...faq,
+                    vector: faqEmbeddings[index],
+                }));
+                console.log("FAQ vectors cached successfully");
+                return result;
+            } catch (error) {
+                console.error("Error generating FAQ vectors:", error);
+                faqVectorCache = null;
+                throw error;
+            }
+        })();
     }
 
     return faqVectorCache;
@@ -42,42 +55,52 @@ router.post('/chat', async (req, res) => {
         const localAnswer = ragProvider.findAnswer(message);
 
         if (localAnswer) {
+            console.log("Found local FAQ answer");
             return res.json({ reply: localAnswer });
         }
 
+        console.log("No local FAQ match found, querying Gemini API...");
+        
         const gemini = new geminiProvider(
             process.env.GEMINI_API_KEY ?? process.env.GEMINI_APP_KEY,
             process.env.GEMINI_MODEL_NAME ?? process.env.GEMINI_MODULE_NAME
         );
 
-        // const promt =  ragProvider.prepareSimplerRagPrompt(message);
-        // For Rag with Embeddings, we will prepare the prompt differently, by including the retrieved relevant information from the knowledge base.
-
+        console.log("Generating query embedding...");
         const queryVector = await gemini.generateEmbedding(message, "RETRIEVAL_QUERY");
+        console.log("Query embedding generated");
+        
+        console.log("Fetching FAQ vectors...");
         const faqVectors = await getFaqVectors(gemini);
+        console.log("FAQ vectors retrieved");
+        
         const fallbackFaq = ragProvider.rankBySimilarity(queryVector, faqVectors, 1)[0];
         const prompt = ragProvider.prepareRagPrompt(message, queryVector, faqVectors);
 
-        console.log('Prepared prompt:', prompt);
+        console.log('Prepared prompt, calling Gemini API...');
 
         let response;
         try {
             response = await gemini.generateResponse(prompt);
         } catch (error) {
+            console.error('Gemini API error:', error.message);
             if (fallbackFaq?.score >= 0.2) {
-                console.warn('Gemini response failed; returning best FAQ match instead.', error);
+                console.warn('Gemini response failed; returning best FAQ match instead.');
                 return res.json({ reply: fallbackFaq.answer });
             }
 
             throw error;
         }
-        // const response = await gemini.generateResponse(message);
-        console.log('Generated response:', response);
+        
+        console.log('Generated response successfully');
 
         res.json({ reply: response });
     } catch (error) {
-        console.error("Error generating response from Gemini API:", error);
-        res.status(500).json({ error: 'Failed to generate response from AI' });
+        console.error("Error generating response:", error);
+        res.status(500).json({ 
+            error: 'Failed to generate response from AI',
+            details: error.message 
+        });
     }
 });
 

@@ -17,14 +17,26 @@ class geminiProvider {
 
   async generateResponse(prompt) {
     try {
+      if (!prompt) {
+        throw new Error("Prompt cannot be empty");
+      }
+      
       const response = await this.genAI.models.generateContent({
         model: this.moduleName,
         contents: prompt,
       });
-      return (response.text ?? "").trim();
+      
+      if (!response.text) {
+        throw new Error("Gemini returned an empty response");
+      }
+      
+      return response.text.trim();
     } catch (error) {
-      console.error("Error generating response from Gemini API:", error);
-      throw new Error("Failed to generate response from Gemini API");
+      console.error("Error generating response from Gemini API:", error.message);
+      if (error.message.includes("API key")) {
+        throw new Error("Invalid or expired API key");
+      }
+      throw error;
     }
   }
 
@@ -41,6 +53,8 @@ class geminiProvider {
     }
 
     try {
+      console.log(`Requesting embeddings for ${contents.length} items with taskType: ${taskType}`);
+      
       const response = await this.genAI.models.embedContent({
         model: "gemini-embedding-001",
         contents,
@@ -51,14 +65,29 @@ class geminiProvider {
 
       const embeddings = response.embeddings?.map((embedding) => embedding.values ?? []) ?? [];
 
-      if (embeddings.length !== contents.length || embeddings.some((embedding) => embedding.length === 0)) {
-        throw new Error("Gemini returned an invalid embedding response");
+      if (!embeddings || embeddings.length === 0) {
+        throw new Error("Gemini returned no embeddings");
       }
 
+      if (embeddings.length !== contents.length) {
+        throw new Error(`Embedding count mismatch: expected ${contents.length}, got ${embeddings.length}`);
+      }
+
+      if (embeddings.some((embedding) => !embedding || embedding.length === 0)) {
+        throw new Error("Gemini returned invalid embeddings (empty vectors)");
+      }
+
+      console.log(`Successfully generated ${embeddings.length} embeddings with ${embeddings[0].length} dimensions`);
       return embeddings;
     } catch (error) {
-      console.error("Error generating embeddings from Gemini API:", error);
-      throw new Error("Failed to generate embeddings from Gemini API");
+      console.error("Error generating embeddings from Gemini API:", error.message);
+      if (error.message.includes("API key") || error.message.includes("INVALID_ARGUMENT")) {
+        throw new Error("Invalid API key or request format for embeddings");
+      }
+      if (error.message.includes("429")) {
+        throw new Error("Rate limit exceeded - please wait before retrying");
+      }
+      throw error;
     }
   }
 }

@@ -28,11 +28,23 @@ export class ChatService {
 
   private getHttpErrorMessage(error: HttpErrorResponse): string {
     if (error.status === 0) {
-      return 'Unable to connect to the chat API. Check that your backend is running and CORS is enabled.';
+      return 'Connection failed: Backend is not running.\n\n' +
+             'To fix: Open a terminal and run:\n' +
+             '  cd chat-app-backend && npm start\n\n' +
+             'The backend must be running on http://localhost:3000';
     }
 
     if (error.status === 404) {
-      return `Chat API endpoint not found: ${this.apiUrl}`;
+      return `Chat API endpoint not found: ${this.apiUrl}\n\n` +
+             'Check that your backend is running and the URL is correct.';
+    }
+
+    if (error.status === 500) {
+      return 'Backend server error (500). Check the backend console for error details.\n\n' +
+             'Common issues:\n' +
+             '- Missing GEMINI_API_KEY in .env file\n' +
+             '- API key is invalid or revoked\n' +
+             '- Backend service crashed';
     }
 
     return `Chat API request failed with status ${error.status}.`;
